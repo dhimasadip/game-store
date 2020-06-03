@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h3>Register new account</h3>
+
+    <form action="/users/register" method="post">
+        <label for="email">Email</label><br>
+            <input type="text" name="email"><br><br>
+            
+            <label for="password">Password</label><br>
+            <input type="password" name="password"><br><br>
+            
+            <label for="confirm_password">Confirm Password</label><br>
+            <input type="password" name="confirm_password"><br><br>
+
+            <button>Submit</button><br>
+            <a href="/users/register">Cancel</a>
+    
+    </form>
+</body>
+</html>
