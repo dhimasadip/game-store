@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Dragonterror",
+        "type": "Sword",
+        "price": 109500,
+        "GameId": 1
+    },
+    {
+        "name": "The Armor of Tustakuri",
+        "type": "Armor",
+        "price": 200000,
+        "GameId": 1
+    },
+    {
+        "name": "Bloodroot Guard",
+        "type": "Armor",
+        "price": 300000,
+        "GameId": 1
+    },
+    {
+        "name": "Acolyte of Vengeance",
+        "type": "Sword",
+        "price": 355500,
+        "GameId": 1
+    },
+    {
+        "name": "MP7",
+        "type": "Sub Machine Gun",
+        "price": 70500,
+        "GameId": 2
+    },
+    {
+        "name": "Spectre",
+        "type": "Sub Machine Gun",
+        "price": 55500,
+        "GameId": 2
+    },
+    {
+        "name": "Aug Gold",
+        "type": "Assault Riffle",
+        "price": 395000,
+        "GameId": 2
+    },
+    {
+        "name": "SG-550 Ext",
+        "type": "Assault Riffle",
+        "price": 219500,
+        "GameId": 2
+    },
+    {
+        "name": "AK SOPMOD",
+        "type": "Assault Riffle",
+        "price": 199500,
+        "GameId": 2
+    },
+    {
+        "name": "Diggie",
+        "type": "Skin",
+        "price": 69000,
+        "GameId": 3
+    },
+    {
+        "name": "Aurora",
+        "type": "Skin",
+        "price": 100000,
+        "GameId": 3
+    },
+    {
+        "name": "Grock",
+        "type": "Skin",
+        "price": 178000,
+        "GameId": 3
+    }
+]

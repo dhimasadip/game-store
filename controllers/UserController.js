@@ -1,4 +1,4 @@
-const { User, Product, Cart } = require('../models')
+const { User, Product, Cart, Game } = require('../models')
 const bcrypt = require('bcrypt')
 
 class UserController {
@@ -23,11 +23,18 @@ class UserController {
                 } else {
                     if(bcrypt.compareSync(user.password, data.password)) {
                         req.session.user = user.email
-                        res.redirect('/dashboard')
+
+                        return Game.findAll()
+                        
                     } else {
                         res.send('wrong password')
                     }
                 }
+            })
+            .then(data => {
+                let dataGame = data
+
+                res.render('dashboard', { dataGame })
             })
             .catch(err => {
                 res.send(err)

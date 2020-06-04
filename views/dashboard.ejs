@@ -12,6 +12,24 @@
         <a href="/users/logout">Logout</a>
     </div>
 
+    <div>
+        <table border="2">
+            <thead>
+                <th>Game</th>
+                <th>Product</th>
+            </thead>
+            <tbody>
+                <% dataGame.forEach(el => { %>
+                 <tr>
+                     <td><%= el['name'] %> </td>
+                     <td>
+                         <a href="/products/<%= el['name'] %>-<%= el['id'] %>">See Product</a>
+                     </td>
+                 </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 </html>

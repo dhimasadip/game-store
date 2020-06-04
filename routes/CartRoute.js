@@ -9,6 +9,8 @@ checkSession = (req,res,next) => {
     }
 }
 
-route.get('/dashboard', checkSession, CartController.dashboard)
+route.use(checkSession)
+route.get('/dashboard', CartController.dashboard)
+
 
 module.exports = route
