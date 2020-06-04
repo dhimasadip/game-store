@@ -32,9 +32,8 @@ class UserController {
                 }
             })
             .then(data => {
-                let dataGame = data
 
-                res.render('dashboard', { dataGame })
+                res.render('dashboard', { data })
             })
             .catch(err => {
                 res.send(err)
