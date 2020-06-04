@@ -1,4 +1,5 @@
 const { User, Cart, Product, Game } = require('../models')
+const nodemailer = require("nodemailer")
 
 class CartController { 
 
@@ -100,8 +101,32 @@ class CartController {
             return Game.findAll()
         })
         .then(data => {
-            const msg = `Your payment has been received and the details has been sent to your email. Thank you!`
-            res.render('dashboard', { data, msg })
+            let transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                port: 587,
+                secure: false,
+                auth: {
+                    user: 'dhimasadip.dap@gmail.com',
+                    pass: 'Simpleblue7'
+                },
+              });
+            
+            const mailOptions = {
+                from: 'dhimasadip.dap@gmail.com',
+                to: 'bergemarekah@gmail.com',
+                subject: 'Trial Nodemailer',
+                text: 'This is nodemailer trial'
+            } 
+
+            transporter.sendMail(mailOptions, (err,info) => {
+                if(err) {
+                    res.send(err)
+                } else {
+                    const msg = `Your payment has been received and the details has been sent to your email. Thank you!`
+                    res.render('dashboard', { data, msg })
+                }
+            })
+            
         })
         .catch(err => {
             res.send(err)
