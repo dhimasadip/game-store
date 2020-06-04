@@ -8,10 +8,6 @@ route.get('/', (req,res) => {
     res.render('home')
 })
 
-route.get('/dashboard', (req,res) => {
-    res.render('dashboard')
-})
-
 route.use('/users', UserRoute)
 route.use('/products', ProductRoute)
 route.use('/carts', CartRoute)
