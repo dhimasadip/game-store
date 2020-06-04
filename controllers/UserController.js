@@ -12,6 +12,8 @@ class UserController {
             password: req.body.password
         }
 
+        let dataUser
+        
         User.findOne({
             where: {
                 email: user.email
@@ -23,7 +25,7 @@ class UserController {
                 } else {
                     if(bcrypt.compareSync(user.password, data.password)) {
                         req.session.user = user.email
-
+                        dataUser = data
                         return Game.findAll()
                         
                     } else {
@@ -33,7 +35,7 @@ class UserController {
             })
             .then(data => {
 
-                res.render('dashboard', { data })
+                res.render('dashboard', { msg: null, dataUser, data })
             })
             .catch(err => {
                 res.send(err)

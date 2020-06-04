@@ -14,20 +14,28 @@
         <%- include('navbar') %>
   </div>
   <div class="cards">
-  <% for(i in data) { %>
+  
     <div class="card">
-    <div class="card-body">
-      <h3 style="text-align: center;"><%= data[i].name %></h3>
-      <h6 style="text-align: center;"><%= data[i].type %></h6>
-      <h5 style="text-align: center;">IDR <%= data[i].price %></h5>
+        <div class="card-body">
+            <h2 style="text-align: center;"><%= data['Game'].name %></h2>
+            <h3 style="text-align: center;"><%= data.name %></h3>
+            <h6 style="text-align: center;"><%= data.type %></h6>
+            <h5 style="text-align: center;">IDR <%= data.price %></h5>
+        </div>
+        <div class="btnpanel">
+            <form action="/products/<%= data['Game'].id %>/<%= data.id %>"  method="post">
+                <label for="quantity">Quantity</label>
+                <input type="number" name="quantity"  style="width: 80px;">
+                <br><br>
+                <input type="submit" class="btn btn-primary" style="width: 150px; color: #fff;" value="Add to Cart">
+            </form>
+            
+        </div>
     </div>
-    <div class="btnpanel">
-      <a href="/products/<%= data[i].GameId %>/<%= data[i].id %>"  class="btn btn-primary" style="width: 150px; color: #fff;">Buy</a>
-    </div>
-    </div>
-  <% } %>
+
   </div>
   <style>
+
 
   .cards{
     display: flex;
@@ -39,14 +47,14 @@
 
   .card{
     width: 300px;
-    height: 200px;
+    height: 300px;
     display: flex;
     justify-content: center;
 
   }
 
   .card-body{
-    height: 150px;
+    height: 200px;
   }
 
   .btnpanel{

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    <% if (msg) { %>
+        <div>
+            <h5><%= msg %> </h5>
+        </div>
+    <% } %>
+    <table border="1">
+        <thead>
+            <th>Game</th>
+            <th>Product</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Tax</th>
+            <th>Total</th>
+        </thead>
+        <tbody>
+            <% data.forEach(el => { %>
+             <tr>
+                 <td><%= el['Product']['Game'].name %></td>
+                 <td><%= el['Product'].name %></td>
+                 <td><%= el['Product'].type %></td>
+                 <td><%= el['Product'].price %></td>
+                 <td><%= el.total_price / el['Product'].price %></td>
+                 <td><%= el.tax %></td>
+                 <td><%= el.total_price + el.tax %></td>
+             </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <a href="<%= msg ? '#' : '/carts/payment' %> ">Pay</a>
+</body>
+</html>

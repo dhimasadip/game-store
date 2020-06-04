@@ -1,7 +1,8 @@
 const route = require('express').Router()
 const ProductController = require('../controllers/ProductController')
 
-// route.get('/', ProductController.list)
-    route.get('/:id', ProductController.findOne)
+route.get('/:gameId', ProductController.findOne)
+route.get('/:gameId/:productId', ProductController.buyProduct)
+route.post('/:gameId/:productId', ProductController.buyProductHandler)
 
 module.exports = route
