@@ -3,7 +3,27 @@ module.exports = (sequelize, DataTypes) => {
   const { Model } = sequelize.Sequelize
   const bcrypt = require('bcrypt')
 
-  class User extends Model {}
+  class User extends Model {
+    get getBalance() {
+      let str = String(this.balance)
+
+      let counter = 1
+      let result = []
+      for (let i = str.length-1; i >= 0; i--) {
+        if(counter == 3) {
+          result.push(str[i])
+          result.push('.')
+          counter = 1
+          continue
+        }
+        result.push(str[i])
+        counter++
+      }
+      let hasil = result.reverse().join('')
+      return hasil
+    }
+
+  }
 
   User.init({
     email: {

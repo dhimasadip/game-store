@@ -2,7 +2,11 @@
 module.exports = (sequelize, DataTypes) => {
   const { Model } = sequelize.Sequelize
 
-  class Product extends Model {}
+  class Product extends Model {
+    get getTax() {
+      return this.price * 0.1
+    }
+  }
 
   Product.init({
     name: DataTypes.STRING,

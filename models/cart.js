@@ -2,7 +2,13 @@
 module.exports = (sequelize, DataTypes) => {
   const { Model } = sequelize.Sequelize
 
-  class Cart extends Model {}
+  class Cart extends Model {
+    get getTotal() {
+      return this.total_price + this.tax
+    }
+
+    
+  }
 
   Cart.init({
     UserId: DataTypes.INTEGER,

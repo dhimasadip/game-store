@@ -28,6 +28,7 @@ class CartController {
                 const msg = `Your balance is not enough`
                 res.render('cart', { msg, data })
             } else {
+                
                 res.render('cart', { msg: null, data })
             }
         })
@@ -38,7 +39,16 @@ class CartController {
 
 
     static topup(req,res) {
-        res.render('topup')
+
+        User.findOne({
+            where: { email: req.session.user }
+        })
+        .then(data => {
+            res.render('topup' , { data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
     }
 
 
@@ -69,7 +79,7 @@ class CartController {
 
 
     static payment(req,res) {
-        let balanceNow, dataUser
+        let dataUser
 
         User.findOne({ where: { email: req.session.user }})
         .then(data => {
@@ -95,9 +105,6 @@ class CartController {
             })
         })
         .then(data => {
-            return Cart.destroy({ where: { UserId: dataUser.id }})
-        })
-        .then(data => {
             return Game.findAll()
         })
         .then(data => {
@@ -113,17 +120,45 @@ class CartController {
             
             const mailOptions = {
                 from: 'dhimasadip.dap@gmail.com',
-                to: 'bergemarekah@gmail.com',
-                subject: 'Trial Nodemailer',
-                text: 'This is nodemailer trial'
+                to: req.session.user,
+                subject: 'Invoice',
+                text: 'Your payment has been received.'
             } 
 
             transporter.sendMail(mailOptions, (err,info) => {
                 if(err) {
                     res.send(err)
                 } else {
-                    const msg = `Your payment has been received and the details has been sent to your email. Thank you!`
-                    res.render('dashboard', { data, msg })
+                    // const msg = `Your payment has been received and the details has been sent to your email. Thank you!`
+                    // res.render('invoice')
+                    // res.render('dashboard', { data, msg })
+                    
+                    User.findOne({ where: { email: req.session.user}})
+                    .then(data => {
+                       
+                        return Cart.findAll({
+                            include: {
+                                model: Product,
+                                include: Game
+                            },
+                            where: { UserId: data.id }
+                        })
+                    })
+                    .then(data => {
+                        Cart.destroy({ where: { UserId: dataUser.id }})
+                       
+                        let grandTotal = 0
+                        let grandTax = 0
+                        let finalPrice = 0
+                        data.forEach(el => {
+                            grandTotal += el.total_price
+                            grandTax += el.tax
+                            finalPrice += (el.total_price + el.tax)
+                        })
+
+                        res.render('invoice', {data, grandTotal, grandTax, finalPrice})
+
+                    })
                 }
             })
             
